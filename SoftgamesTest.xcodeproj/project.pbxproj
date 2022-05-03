@@ -16,6 +16,8 @@
 		8864591D282120C200E180A0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864591C282120C200E180A0 /* HomeViewController.swift */; };
 		8864591E282120C200E180A0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864591C282120C200E180A0 /* HomeViewController.swift */; };
 		88645926282124FF00E180A0 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 88645925282124FF00E180A0 /* index.html */; };
+		8864592C28213EA100E180A0 /* message.js in Resources */ = {isa = PBXBuildFile; fileRef = 8864592B28213EA100E180A0 /* message.js */; };
+		8864593A28215C0C00E180A0 /* message.js in Resources */ = {isa = PBXBuildFile; fileRef = 8864592B28213EA100E180A0 /* message.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,7 @@
 		8864590028211B8400E180A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8864591C282120C200E180A0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		88645925282124FF00E180A0 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		8864592B28213EA100E180A0 /* message.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = message.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +134,9 @@
 		8864590F28211DA600E180A0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8864591C282120C200E180A0 /* HomeViewController.swift */,
 				88645925282124FF00E180A0 /* index.html */,
+				8864592B28213EA100E180A0 /* message.js */,
+				8864591C282120C200E180A0 /* HomeViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -242,6 +246,7 @@
 			files = (
 				88645926282124FF00E180A0 /* index.html in Resources */,
 				886458E928211B8400E180A0 /* LaunchScreen.storyboard in Resources */,
+				8864592C28213EA100E180A0 /* message.js in Resources */,
 				886458E628211B8400E180A0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8864593A28215C0C00E180A0 /* message.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
