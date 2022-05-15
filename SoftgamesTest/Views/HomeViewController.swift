@@ -14,6 +14,9 @@ class HomeViewController: UIViewController {
         let webView = WKWebView()
         return webView
     }()
+    
+    private let nameId: String = "namevalue"
+    private let birthdayId: String = "birthdayvalue"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,34 +69,29 @@ extension HomeViewController: WKScriptMessageHandler{
         }
         
         if let bdate = dict["bdate"] as? String {
-            handleDate(bdate: bdate)
+            DispatchQueue.global().async { [self] in
+                sleep(5)
+                DispatchQueue.main.async { [self] in
+                    showData(elementId: birthdayId, innerText: bdate)
+                }
+            }
         } else if let fName = dict["fname"] as? String, let lName = dict["lname"] as? String{
-            handleName(fName: fName, lName: lName)
+            let nameText = "\(fName) \(lName)"
+            showData(elementId: nameId, innerText: nameText)
         }
         
     }
     
-    private func handleName(fName: String, lName: String) {
+    private func showData(elementId: String, innerText: String) {
+        let script = "document.getElementById('\(elementId)').innerText = \"\(innerText)\""
+        self.webView.evaluateJavaScript(script) { (result, error) in
+            if let result = result {
+                print("Label is updated with message: \(result)")
+            } else if let error = error {
+                print("An error occurred: \(error)")
+            }
+        }
 
-        let script = "document.getElementById('value').innerText = \"\(fName) \(lName)\""
-        webView.evaluateJavaScript(script) { (result, error) in
-            if let result = result {
-                print("Label is updated with message: \(result)")
-            } else if let error = error {
-                print("An error occurred: \(error)")
-            }
-        }
-    }
-    
-    private func handleDate(bdate: String) {
-        let script = "document.getElementById('value').innerText = \"\(bdate)\""
-        webView.evaluateJavaScript(script) { (result, error) in
-            if let result = result {
-                print("Label is updated with message: \(result)")
-            } else if let error = error {
-                print("An error occurred: \(error)")
-            }
-        }
     }
 }
 
