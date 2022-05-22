@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		885073472839539D005DDC8C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885073462839539D005DDC8C /* HomeViewModel.swift */; };
+		885073482839539D005DDC8C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885073462839539D005DDC8C /* HomeViewModel.swift */; };
 		886458DD28211B8300E180A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886458DC28211B8300E180A0 /* AppDelegate.swift */; };
 		886458DF28211B8300E180A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886458DE28211B8300E180A0 /* SceneDelegate.swift */; };
 		886458E628211B8400E180A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 886458E528211B8400E180A0 /* Assets.xcassets */; };
@@ -18,6 +20,7 @@
 		88645926282124FF00E180A0 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 88645925282124FF00E180A0 /* index.html */; };
 		8864592C28213EA100E180A0 /* message.js in Resources */ = {isa = PBXBuildFile; fileRef = 8864592B28213EA100E180A0 /* message.js */; };
 		8864593A28215C0C00E180A0 /* message.js in Resources */ = {isa = PBXBuildFile; fileRef = 8864592B28213EA100E180A0 /* message.js */; };
+		88D08DE928382E7000DC04CF /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 88645925282124FF00E180A0 /* index.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		885073462839539D005DDC8C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		886458D928211B8300E180A0 /* SoftgamesTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoftgamesTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		886458DC28211B8300E180A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		886458DE28211B8300E180A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		885073452838EA7C005DDC8C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				885073462839539D005DDC8C /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		886458D028211B8300E180A0 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +115,7 @@
 		886458DB28211B8300E180A0 /* SoftgamesTest */ = {
 			isa = PBXGroup;
 			children = (
+				885073452838EA7C005DDC8C /* ViewModels */,
 				8864590F28211DA600E180A0 /* Views */,
 				886458DC28211B8300E180A0 /* AppDelegate.swift */,
 				886458DE28211B8300E180A0 /* SceneDelegate.swift */,
@@ -134,12 +147,21 @@
 		8864590F28211DA600E180A0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				88645925282124FF00E180A0 /* index.html */,
-				8864592B28213EA100E180A0 /* message.js */,
+				88D08DE528382D5A00DC04CF /* website */,
 				8864591C282120C200E180A0 /* HomeViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
+		};
+		88D08DE528382D5A00DC04CF /* website */ = {
+			isa = PBXGroup;
+			children = (
+				88645925282124FF00E180A0 /* index.html */,
+				8864592B28213EA100E180A0 /* message.js */,
+			);
+			name = website;
+			path = SoftgamesTest/Views/website;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -256,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8864593A28215C0C00E180A0 /* message.js in Resources */,
+				88D08DE928382E7000DC04CF /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +299,7 @@
 				886458DD28211B8300E180A0 /* AppDelegate.swift in Sources */,
 				886458DF28211B8300E180A0 /* SceneDelegate.swift in Sources */,
 				8864591D282120C200E180A0 /* HomeViewController.swift in Sources */,
+				885073472839539D005DDC8C /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				886458F428211B8400E180A0 /* SoftgamesTestTests.swift in Sources */,
+				885073482839539D005DDC8C /* HomeViewModel.swift in Sources */,
 				8864591E282120C200E180A0 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

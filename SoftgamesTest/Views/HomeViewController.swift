@@ -15,14 +15,14 @@ class HomeViewController: UIViewController {
         return webView
     }()
     
-    private let nameId: String = "namevalue"
-    private let birthdayId: String = "birthdayvalue"
+    lazy var viewModel = HomeViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         prepareViews()
         prepareStyle()
+        initViewModel()
     }
     
     func prepareStyle() {
@@ -44,6 +44,8 @@ class HomeViewController: UIViewController {
         
         if let url = Bundle.main.url(forResource: "index", withExtension: "html") {
             webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+        } else {
+            debugPrint("index not found")
         }
 
         
@@ -59,6 +61,19 @@ class HomeViewController: UIViewController {
 
     }
     
+    func initViewModel()
+    {
+        viewModel.onScriptUpdate = { [weak self] (script: String) in
+            self?.webView.evaluateJavaScript(script) { (result, error) in
+                if let result = result {
+                    print("Label is updated with message: \(result)")
+                } else if let error = error {
+                    print("An error occurred: \(error)")
+                }
+            }
+        }
+    }
+    
 
 }
 
@@ -68,30 +83,9 @@ extension HomeViewController: WKScriptMessageHandler{
             return
         }
         
-        if let bdate = dict["bdate"] as? String {
-            DispatchQueue.global().async { [self] in
-                sleep(5)
-                DispatchQueue.main.async { [self] in
-                    showData(elementId: birthdayId, innerText: bdate)
-                }
-            }
-        } else if let fName = dict["fname"] as? String, let lName = dict["lname"] as? String{
-            let nameText = "\(fName) \(lName)"
-            showData(elementId: nameId, innerText: nameText)
-        }
+        viewModel.scriptRequest(messageBody: dict)
         
     }
     
-    private func showData(elementId: String, innerText: String) {
-        let script = "document.getElementById('\(elementId)').innerText = \"\(innerText)\""
-        self.webView.evaluateJavaScript(script) { (result, error) in
-            if let result = result {
-                print("Label is updated with message: \(result)")
-            } else if let error = error {
-                print("An error occurred: \(error)")
-            }
-        }
-
-    }
 }
 
