@@ -13,6 +13,7 @@ class HomeViewModel {
     private let birthdayId: String = "birthdayvalue"
     
     var onScriptUpdate: ((_ script: String) -> Void)?
+    var onNotificationUpdate: ((_ title: String, _ body: String, _ timeInterval: TimeInterval) -> Void)?
     
     func scriptRequest(messageBody: [String : AnyObject]) {
         if let bdate = messageBody["bdate"] as? String {
@@ -27,6 +28,8 @@ class HomeViewModel {
             let nameText = "\(fName) \(lName)"
             let script = "document.getElementById('\(nameId)').innerText = \"\(nameText)\""
             onScriptUpdate?(script)
+        } else if messageBody["notification"] != nil {
+            onNotificationUpdate?("Solitaire smash", "Play again to smash your top score", 7)
         }
     }
     

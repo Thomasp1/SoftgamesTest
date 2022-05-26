@@ -14,3 +14,6 @@
     function aSyncButtonPressed(){
         sendToNative({ bdate: _bdate.value});
     }
+    function notificationButtonPressed(){
+        sendToNative({ notification: true});
+    }

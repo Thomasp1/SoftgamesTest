@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import UserNotifications
 
 class HomeViewController: UIViewController {
     
@@ -16,6 +17,8 @@ class HomeViewController: UIViewController {
     }()
     
     lazy var viewModel = HomeViewModel()
+    
+    let userNotificationCenter = UNUserNotificationCenter.current()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,8 @@ class HomeViewController: UIViewController {
         prepareViews()
         prepareStyle()
         initViewModel()
+        self.requestNotificationAuthorization()
+        self.userNotificationCenter.delegate = self
     }
     
     func prepareStyle() {
@@ -72,12 +77,45 @@ class HomeViewController: UIViewController {
                 }
             }
         }
+        viewModel.onNotificationUpdate = { [weak self] (title: String, body: String, timeInterval: TimeInterval) in
+            self?.sendNotification(title: title, body: body, timeInterval: timeInterval)
+        }
+    }
+    
+    func requestNotificationAuthorization() {
+        let authOptions = UNAuthorizationOptions.init(arrayLiteral: .alert, .badge, .sound)
+        
+        self.userNotificationCenter.requestAuthorization(options: authOptions) { (success, error) in
+            if let error = error {
+                print("Error: ", error)
+            }
+        }
+    }
+
+    func sendNotification(title: String, body: String, timeInterval: TimeInterval) {
+        let notificationContent = UNMutableNotificationContent()
+
+        notificationContent.title = title
+        notificationContent.body = body
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval,
+                                                        repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "testNotification",
+                                            content: notificationContent,
+                                            trigger: trigger)
+        
+        userNotificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Notification Error: ", error)
+            }
+        }
     }
     
 
 }
 
-extension HomeViewController: WKScriptMessageHandler{
+extension HomeViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let dict = message.body as? [String : AnyObject] else {
             return
@@ -87,5 +125,15 @@ extension HomeViewController: WKScriptMessageHandler{
         
     }
     
+}
+
+extension HomeViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
 }
 
